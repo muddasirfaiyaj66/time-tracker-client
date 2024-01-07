@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
 import { Formik, Field, ErrorMessage } from 'formik';
 import Swal from "sweetalert2";
 
@@ -12,13 +11,13 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
   const [error, setError] = useState(null);
-  const { login } = useAuth();
+  const { createUser } = useAuth();
 
   const handleLogin = async (values, { setSubmitting }) => {
     try {
       const { email, password } = values;
   
-      const response = await login(email, password);
+      const response = await createUser(email, password);
      
       if (response) {
         Swal.fire({
